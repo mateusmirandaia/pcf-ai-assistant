@@ -155,3 +155,24 @@ vite.config.ts.timestamp-*
 .nx/cache
 .nx/workspace-data
 .nx/migrate-runs
+
+# PCF build output
+out/
+**/generated/
+obj/
+bin/
+*.binlog
+.vs/
+
+# Solution project created locally with `pac solution init`
+solution/
+
+# Azure Functions
+api/dist/
+api/local.settings.json
+.azurite/
+__azurite_db_*.json
+__blobstorage__/
+__queuestorage__/
+
+.DS_Store

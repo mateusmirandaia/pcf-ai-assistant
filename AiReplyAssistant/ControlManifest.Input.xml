@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="MateusMiranda" constructor="AiReplyAssistant" version="0.1.0"
+           display-name-key="AiReplyAssistant_Display_Key"
+           description-key="AiReplyAssistant_Desc_Key"
+           control-type="virtual">
+
+    <external-service-usage enabled="true">
+      <domain>your-function-app.azurewebsites.net</domain>
+    </external-service-usage>
+
+    <property name="replyDraft" display-name-key="ReplyDraft_Display_Key" description-key="ReplyDraft_Desc_Key"
+              of-type="Multiple" usage="bound" required="true" />
+
+    <property name="sourceText" display-name-key="SourceText_Display_Key" description-key="SourceText_Desc_Key"
+              of-type="Multiple" usage="input" required="true" />
+
+    <property name="tone" display-name-key="Tone_Display_Key" description-key="Tone_Desc_Key"
+              of-type="Enum" usage="input" default-value="formal" required="true">
+      <value name="formal" display-name-key="Tone_Formal_Key">formal</value>
+      <value name="friendly" display-name-key="Tone_Friendly_Key">friendly</value>
+      <value name="concise" display-name-key="Tone_Concise_Key">concise</value>
+    </property>
+
+    <property name="apiEndpoint" display-name-key="ApiEndpoint_Display_Key" description-key="ApiEndpoint_Desc_Key"
+              of-type="SingleLine.Text" usage="input" required="true" />
+
+    <resources>
+      <code path="index.ts" order="1" />
+      <platform-library name="React" version="16.14.0" />
+      <platform-library name="Fluent" version="9.68.0" />
+      <resx path="strings/AiReplyAssistant.1033.resx" version="1.0.0" />
+    </resources>
+  </control>
+</manifest>
