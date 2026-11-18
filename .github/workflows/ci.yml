@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  control:
+    name: PCF control
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      # ManifestTypes.d.ts is generated from the manifest and not committed;
+      # type-aware lint rules and tsc both need it.
+      - run: npm run refreshTypes
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test -- --ci
+      - run: npm run build:prod
+
+  api:
+    name: Azure Function
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: api/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test -- --ci
+      - run: npm run build
