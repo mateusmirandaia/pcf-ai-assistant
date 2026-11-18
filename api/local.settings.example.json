@@ -1,0 +1,16 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AZURE_OPENAI_ENDPOINT": "https://your-resource.openai.azure.com/",
+    "AZURE_OPENAI_API_KEY": "your-azure-openai-key",
+    "AZURE_OPENAI_DEPLOYMENT": "your-chat-deployment-name",
+    "AZURE_OPENAI_API_VERSION": "2024-10-21",
+    "MAX_SOURCE_CHARS": "4000"
+  },
+  "Host": {
+    "CORS": "http://localhost:8181",
+    "CORSCredentials": false
+  }
+}
